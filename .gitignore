@@ -4,10 +4,7 @@ target/
 !**/src/test/**/target/
 
 ### IntelliJ IDEA ###
-.idea/modules.xml
-.idea/jarRepositories.xml
-.idea/compiler.xml
-.idea/libraries/
+.idea/
 *.iws
 *.iml
 *.ipr
@@ -36,3 +33,17 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+### Log files ###
+*.log
+
+### Package Files ###
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# Exception for Maven wrapper
+!.mvn/wrapper/maven-wrapper.jar
