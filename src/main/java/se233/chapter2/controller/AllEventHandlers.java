@@ -2,6 +2,8 @@ package se233.chapter2.controller;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextInputDialog;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import se233.chapter2.Launcher;
 import se233.chapter2.model.Currency;
 import se233.chapter2.model.CurrencyEntity;
@@ -11,6 +13,7 @@ import java.util.Optional;
 import java.util.concurrent.ExecutionException;
 
 public class AllEventHandlers {
+    private static final Logger logger = LogManager.getLogger(AllEventHandlers.class);
     public static void onBaseCurrencyChange() {
         try {
             List<Currency> currencyList = Launcher.getCurrencyList();
@@ -49,7 +52,8 @@ public class AllEventHandlers {
                     List<CurrencyEntity> cList = FetchData.fetchRange(c.getShortCode(),30);
                     c.setHistorical(cList);
                     c.setCurrent(cList.get(cList.size() - 1));
-                    currencyList.add(c);
+                    currencyList.add(c); // Add currency
+                    logger.info("Currency: " + c.getShortCode() + " has been added.");
                 } catch (Exception e) {
                     Alert invalidCurrencyAlert = new Alert(Alert.AlertType.ERROR);
                     invalidCurrencyAlert.setHeaderText("Invalid Currency Input");
@@ -77,7 +81,8 @@ public class AllEventHandlers {
                 }
             }
             if (index != -1) {
-                currencyList.remove(index);
+                currencyList.remove(index); // Remove currency
+                logger.info("Currency: " + code + " has been removed.");
                 Launcher.setCurrencyList(currencyList);
                 Launcher.refreshPane();
             }
